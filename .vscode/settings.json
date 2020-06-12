@@ -67,10 +67,12 @@
     // Controls if suggestions should be accepted on 'Enter' - in addition to 'Tab'. Helps to avoid ambiguity between inserting new lines or accepting suggestions. The value 'smart' means only accept a suggestion with Enter when it makes a textual change
     "editor.acceptSuggestionOnEnter": "on",
     "editor.tabCompletion": "on",
-    "editor.fontFamily": "'Cascadia Code'",
+    "editor.fontFamily": "'Cascadia Code', monospace",
     "C_Cpp.default.intelliSenseMode": "gcc-x64",
     "workbench.colorTheme": "One Dark Pro",
     "workbench.iconTheme": "material-icon-theme",
     "C_Cpp.updateChannel": "Insiders",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "terminal.integrated.fontFamily": "'ubuntu mono'",
+    "terminal.integrated.fontSize": 16
 }

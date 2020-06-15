@@ -73,6 +73,6 @@
     "workbench.iconTheme": "material-icon-theme",
     "C_Cpp.updateChannel": "Insiders",
     "editor.formatOnSave": true,
-    "terminal.integrated.fontFamily": "monospace",
+    "terminal.integrated.fontFamily": "'Cascadia Mono', monospace",
     "terminal.integrated.fontWeight": "bold"
 }

@@ -67,11 +67,18 @@ int main()
         {
             break;
         }
-        else
+        else if (st != 1)
         {
             ansa++;
         }
     }
-    cout << ansa << " " << ansb << endl;
+    if (ansa == 0)
+    {
+        cout << 0 << " " << -1 << endl;
+    }
+    else
+    {
+        cout << ansa << " " << ansb << endl;
+    }
     return 0;
 }

@@ -5,56 +5,49 @@
 using namespace std;
 vector<string> v[35];
 vector<string> no[105];
-int d[35][105];
+vector<long long> nol;
+long long d[35][105];
 map<string, bool> m[35];
 int an = 0;
 int nw = 0;
 int n, k;
-void func(vector<string> t, int dep)
+int getp(int s)
 {
-    if (dep >= an)
+    int p = 0;
+    for (int i = 0; i < no[s].size(); i++)
     {
-        bool nook = false;
-        for (int i = 0; i < n; i++)
+        for (int j = 0; j < v[i].size(); j++)
         {
-            bool match = true;
-            for (int j = 0; j < t.size(); j++)
+            if (no[s][i] == v[i][j])
             {
-                if (t[j] != no[i][j])
-                {
-                    match = false;
-                }
-            }
-            if (match)
-            {
-                nook = true;
-                break;
-            }
-        }
-        if (!nook)
-        {
-            nw++;
-            if (nw == k)
-            {
-                for (int j = 0; j < t.size(); j++)
-                {
-                    cout << t[j] << " ";
-                }
-                cout << endl;
-                exit(0);
+                p += d[i][j];
             }
         }
     }
-    for (int i = 0; i < v[dep].size(); i++)
+    return p;
+}
+void getans(int dk)
+{
+    for (int i = 0; i < an; i++)
     {
-        t.push_back(v[dep][i]);
-        func(t, dep + 1);
-        t.pop_back();
+        for (int j = v[i].size() - 1; j >= 0; j--)
+        {
+            if (dk > d[i][j])
+            {
+                if (i < an - 1)
+                    cout << v[i][j] << " ";
+                else
+                    cout << v[i][j];
+                dk -= d[i][j];
+                break;
+            }
+        }
     }
 }
 int main()
 {
-
+    freopen("nocow.in", "r", stdin);
+    freopen("nocow.out", "w", stdout);
     cin >> n >> k;
 
     for (int i = 0; i < n; i++)
@@ -86,6 +79,48 @@ int main()
     {
         sort(v[i].begin(), v[i].end());
     }
-    vector<string> t;
-    func(t, 0);
+    for (int i = 1; i < v[an - 1].size(); i++)
+    {
+        d[an - 1][i] = i;
+    }
+
+    for (int i = an - 2; i >= 0; i--)
+    {
+        for (int j = 1; j < v[i].size(); j++)
+        {
+            d[i][j] = d[i][j - 1] + d[i + 1][1] * v[i + 1].size();
+        }
+        if (v[i].size() <= 1)
+        {
+            d[i][1] = d[i + 1][1] * v[i + 1].size();
+        }
+    }
+    for (int i = 0; i < an - 2; i++)
+    {
+        for (int j = 0; j < v[i].size(); j++)
+        {
+            //cout << d[i][j] << " ";
+        }
+        //cout << endl;
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        nol.push_back(getp(i));
+    }
+    sort(nol.begin(), nol.end());
+
+    for (int i = 0; i < n; i++)
+    {
+        if (nol[i] < k)
+        {
+            k++;
+        }
+        else
+        {
+            break;
+        }
+    }
+    getans(k);
+    return 0;
 }

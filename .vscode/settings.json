@@ -56,7 +56,30 @@
         "iomanip": "cpp",
         "bitset": "cpp",
         "regex": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "any": "cpp",
+        "cfenv": "cpp",
+        "charconv": "cpp",
+        "codecvt": "cpp",
+        "complex": "cpp",
+        "condition_variable": "cpp",
+        "csetjmp": "cpp",
+        "csignal": "cpp",
+        "cuchar": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp",
+        "set": "cpp",
+        "unordered_set": "cpp",
+        "future": "cpp",
+        "mutex": "cpp",
+        "numbers": "cpp",
+        "scoped_allocator": "cpp",
+        "shared_mutex": "cpp",
+        "span": "cpp",
+        "stop_token": "cpp",
+        "thread": "cpp",
+        "typeindex": "cpp",
+        "variant": "cpp"
     },
     // Controls if quick suggestions should show up while typing
     /*"editor.quickSuggestions": {
@@ -68,11 +91,12 @@
     "editor.acceptSuggestionOnEnter": "on",
     "editor.tabCompletion": "on",
     "editor.fontFamily": "'Cascadia Code', monospace",
-    "C_Cpp.default.intelliSenseMode": "gcc-x64",
+    "C_Cpp.default.intelliSenseMode": "clang-x64",
     "workbench.colorTheme": "One Dark Pro",
     "workbench.iconTheme": "material-icon-theme",
     "C_Cpp.updateChannel": "Insiders",
     "editor.formatOnSave": true,
     "terminal.integrated.fontFamily": "'Cascadia Mono', monospace",
-    "terminal.integrated.fontWeight": "bold"
+    "terminal.integrated.fontWeight": "bold",
+    "C_Cpp.default.cppStandard": "c++11"
 }

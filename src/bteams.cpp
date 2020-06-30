@@ -2,53 +2,38 @@
 using namespace std;
 int p[15];
 bool u[15];
-int tp[10];
+int plan[15];
 const int n = 12;
 int ans = 100000000;
 void get_ans()
 {
-    int a = 0;
-    for (int i = 0; i < n; i++)
+    int p1 = 0, p2 = 0, p3 = 0, p4 = 0;
+    p1 = plan[0] + plan[1] + plan[2];
+    p2 = plan[3] + plan[4] + plan[5];
+    p3 = plan[6] + plan[7] + plan[8];
+    p4 = plan[9] + plan[10] + plan[11];
+    ans = min(ans, max(p1, max(p2, max(p3, p4))) - min(p1, min(p2, min(p3, p4))));
+}
+void func(int dep, int l)
+{
+    if (dep >= n)
+    {
+        get_ans();
+        return;
+    }
+    if (dep % 3 == 0)
+    {
+        l = 0;
+    }
+    for (int i = l; i < n; i++)
     {
         if (!u[i])
         {
-            tp[3] += p[i];
-            a++;
+            u[i] = true;
+            plan[dep] = p[i];
+            func(dep + 1, i);
+            u[i] = false;
         }
-    }
-    if (a != 3)
-    {
-        return;
-    }
-    ans = min(ans, max(tp[0], max(tp[1], max(tp[2], tp[3]))) - min(tp[0], min(tp[1], min(tp[2], tp[3]))));
-    if (max(tp[0], max(tp[1], max(tp[2], tp[3]))) - min(tp[0], min(tp[1], min(tp[2], tp[3]))) == 0)
-        cout << tp[0] << " " << tp[1] << " " << tp[2] << " " << tp[3] << endl;
-    tp[3] = 0;
-}
-void func(int dep, int v, int c, int t)
-{
-    if (dep >= n || c >= 3)
-    {
-        if (c == 3)
-        {
-            if (t < 3)
-            {
-                tp[t] = v;
-                func(0, 0, 0, t + 1);
-            }
-            else
-            {
-                get_ans();
-            }
-        }
-        return;
-    }
-    func(dep + 1, v, c, t);
-    if (!u[dep] && c < 3)
-    {
-        u[dep] = true;
-        func(dep + 1, v + p[dep], c + 1, t);
-        u[dep] = false;
     }
 }
 
@@ -59,7 +44,7 @@ int main()
     {
         cin >> p[i];
     }
-    func(0, 0, 0, 0);
+    func(0, 0);
     cout << ans << endl;
     return 0;
 }

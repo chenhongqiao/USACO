@@ -1,15 +1,12 @@
 #include <iostream>
-#include <chrono>
 using namespace std;
 int p[15];
 bool u[15];
 int plan[15];
 const int n = 12;
 int ans = 100000000;
-int cnt = 0;
 void get_ans()
 {
-    cnt++;
     int p1 = 0, p2 = 0, p3 = 0, p4 = 0;
     p1 = plan[0] + plan[1] + plan[2];
     p2 = plan[3] + plan[4] + plan[5];
@@ -46,15 +43,11 @@ void func(int dep, int l, int lm)
 
 int main()
 {
-    freopen("test", "r", stdin);
     for (int i = 0; i < n; i++)
     {
         cin >> p[i];
     }
-    auto begin = chrono::high_resolution_clock::now();
     func(0, 0, 0);
-    auto dur = std::chrono::duration_cast<std::chrono::milliseconds>(chrono::high_resolution_clock::now() - begin).count();
-    cout << "time used=" << dur << " ms" << endl;
-    cout << ans << " " << cnt << endl;
+    cout << ans << endl;
     return 0;
 }

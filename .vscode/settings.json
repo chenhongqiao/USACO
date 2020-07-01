@@ -94,9 +94,10 @@
     "C_Cpp.default.intelliSenseMode": "clang-x64",
     "workbench.colorTheme": "One Dark Pro",
     "workbench.iconTheme": "material-icon-theme",
-    "C_Cpp.updateChannel": "Insiders",
     "editor.formatOnSave": true,
     "terminal.integrated.fontFamily": "'Cascadia Mono', monospace",
     "terminal.integrated.fontWeight": "bold",
-    "C_Cpp.default.cppStandard": "c++11"
+    "C_Cpp.default.cppStandard": "c++11",
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false
 }

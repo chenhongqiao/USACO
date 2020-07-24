@@ -10,7 +10,7 @@
                 "${file}",
                 "-o",
                 "${workspaceRoot}/bin/${fileBasenameNoExtension}",
-                //"-O2"
+                "-O2"
             ],
             "options": {
                 "cwd": "${workspaceRoot}"

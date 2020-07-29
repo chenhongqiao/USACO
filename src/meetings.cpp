@@ -9,8 +9,8 @@ bool ucmp(int a, pair<int, int> b)
 }
 int main()
 {
-    freopen("meetings.in", "r", stdin);
-    freopen("meetings.out", "w", stdout);
+    //freopen("meetings.in", "r", stdin);
+    //freopen("meetings.out", "w", stdout);
     int n, e;
     int aw = 0;
     cin >> n >> e;

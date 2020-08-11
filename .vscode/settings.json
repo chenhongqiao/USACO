@@ -98,6 +98,5 @@
     "terminal.integrated.fontFamily": "'Cascadia Mono', monospace",
     "C_Cpp.default.cppStandard": "c++11",
     "telemetry.enableTelemetry": false,
-    "telemetry.enableCrashReporter": false,
-    "terminal.integrated.rendererType": "experimentalWebgl"
+    "telemetry.enableCrashReporter": false
 }

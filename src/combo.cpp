@@ -45,5 +45,5 @@ int main()
         }
     }
     cout << ans << endl;
-    return EXIT_SUCCESS;
+    return 0;
 }

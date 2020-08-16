@@ -29,5 +29,5 @@ int main()
         }
     }
     cout << ans + 1 << endl;
-    return EXIT_SUCCESS;
+    return 0;
 }

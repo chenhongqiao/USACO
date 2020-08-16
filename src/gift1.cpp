@@ -1,17 +1,9 @@
-/*
-ID: harrych3
-TASK: gift1
-LANG: C++
-*/
 #include <iostream>
 #include <map>
 using namespace std;
 map<string, int> tmny;
 int main()
 {
-    //decomment following lines when submit
-    //freopen("gift1.in","r",stdin);
-    //freopen("gift1.out","r",stdout);
     int np;
     cin >> np;
     string name[15];

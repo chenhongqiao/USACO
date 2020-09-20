@@ -91,12 +91,12 @@
     "editor.acceptSuggestionOnEnter": "on",
     "editor.tabCompletion": "on",
     "editor.fontFamily": "'Cascadia Code', monospace",
-    "C_Cpp.default.intelliSenseMode": "clang-x64",
     "workbench.colorTheme": "One Dark Pro",
     "workbench.iconTheme": "material-icon-theme",
     "editor.formatOnSave": true,
-    "terminal.integrated.fontFamily": "'Cascadia Mono', monospace",
+    "terminal.integrated.fontFamily": "monospace",
     "C_Cpp.default.cppStandard": "c++11",
     "telemetry.enableTelemetry": false,
-    "telemetry.enableCrashReporter": false
+    "telemetry.enableCrashReporter": false,
+    "C_Cpp.default.intelliSenseMode": "clang-x64"
 }

@@ -6,6 +6,7 @@
             "type": "process",
             "command": "/usr/bin/g++",
             "args": [
+                "-Wall",
                 "-g",
                 "${file}",
                 "-o",

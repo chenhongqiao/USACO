@@ -32,7 +32,11 @@ int dfs(int dep)
         }
         return 0;
     }
-    if (p[dep].first - 1 >= 0 && p[dep].first - 1 < n && p[dep].second - 2 >= 0 && p[dep].second - 2 < n && g[p[dep].first - 1][p[dep].second - 2] > 0)
+    if (p[dep].first - 1 >= 0 && p[dep].first - 1 < n && p[dep].second - 2 >= 0 && p[dep].second - 2 < n && g[p[dep].first - 1][p[dep].second - 2] != 0)
+    {
+        return -1;
+    }
+    if (p[dep].first >= 2 && g[p[dep].first - 2][p[dep].second] != 0)
     {
         return -1;
     }
@@ -40,6 +44,7 @@ int dfs(int dep)
     {
         return -1;
     }
+
     bool is_legi = true;
     for (int i = 0; i < 3; i++)
     {
@@ -82,6 +87,8 @@ int dfs(int dep)
 }
 int main()
 {
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
     cin >> n >> m >> k;
     for (int i = 0; i < n; i++)
     {

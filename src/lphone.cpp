@@ -11,30 +11,32 @@ struct r
 {
     int a, b, c;
 };
-vector<r> ans;
-int dfs(int x, int y, int l, int dep)
+int ans = 100000000;
+void dfs(int x, int y, int l, int dep, int c)
 {
     if (x < 0 || x >= w || y < 0 || y >= h || g[x][y] == '*')
     {
-        return 10000000;
+        return;
     }
     if (g[x][y] == 'C' && (x != s.first || y != s.second))
     {
-        return 0;
+        ans = min(ans, c);
+        return;
     }
-    if (b[x][y][l] != -1)
+    if (c >= b[x][y][l])
     {
-        return b[x][y][l];
+        return;
     }
-    int tmp = 10000000;
+    else if (c < b[x][y][l])
+    {
+        b[x][y][l] = c;
+    }
     if (!v[x + dx[l]][y + dy[l]])
     {
         v[x + dx[l]][y + dy[l]] = true;
-        tmp = min(tmp, dfs(x + dx[l], y + dy[l], l, dep + 1));
+        dfs(x + dx[l], y + dy[l], l, dep + 1, c);
         v[x + dx[l]][y + dy[l]] = false;
     }
-    int cnt = 0;
-
     for (int i = 0; i < 4; i++)
     {
         if (i == l)
@@ -43,17 +45,11 @@ int dfs(int x, int y, int l, int dep)
         }
         else if (!v[x + dx[i]][y + dy[i]])
         {
-            cnt++;
             v[x + dx[i]][y + dy[i]] = true;
-            ans.push_back({x, y, i});
-            tmp = min(tmp, dfs(x + dx[i], y + dy[i], i, dep + 1) + 1);
+            dfs(x + dx[i], y + dy[i], i, dep + 1, c + 1);
             v[x + dx[i]][y + dy[i]] = false;
-            ans.pop_back();
         }
     }
-
-    b[x][y][l] = tmp;
-    return tmp;
 }
 int main()
 {
@@ -63,7 +59,7 @@ int main()
         {
             for (int k = 0; k < 4; k++)
             {
-                b[i][j][k] = -1;
+                b[i][j][k] = 100000000;
             }
         }
     }
@@ -81,12 +77,10 @@ int main()
             }
         }
     }
-    int ans = 10000000;
     v[s.first][s.second] = true;
     for (int i = 0; i < 4; i++)
     {
-        int tmp = dfs(s.first, s.second, i, 0);
-        ans = min(ans, tmp);
+        dfs(s.first, s.second, i, 0, 0);
     }
     cout << ans << endl;
     return 0;

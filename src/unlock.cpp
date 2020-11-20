@@ -13,30 +13,30 @@ pair<int, int> bl[3];
 umap<int, umap<int, bool>> s[3];
 int dx[4] = {1, 0, -1, 0};
 int dy[4] = {0, 1, 0, -1};
-uset<long long> v;
-bool overlap(vector<pair<int, int>> st, int a, int b)
+uset<int> v;
+bool overlap(int a, int b)
 {
-    if (st[a].first - bl[a].first > st[b].first - tr[b].first || st[b].first - bl[b].first > st[a].first - tr[a].first)
+    if (q.front()[a].first - bl[a].first > q.front()[b].first - tr[b].first || q.front()[b].first - bl[b].first > q.front()[a].first - tr[a].first)
     {
         return false;
     }
-    else if (st[a].second - bl[a].second > st[b].second - tr[b].second || st[b].second - bl[b].second > st[a].second - tr[a].second)
+    else if (q.front()[a].second - bl[a].second > q.front()[b].second - tr[b].second || q.front()[b].second - bl[b].second > q.front()[a].second - tr[a].second)
     {
         return false;
     }
     return true;
 }
-bool check_valid(vector<pair<int, int>> st, int obj)
+bool check_valid(int obj)
 {
-    int xm = st[obj].first - o[obj].first;
-    int ym = st[obj].second - o[obj].second;
+    int xm = q.front()[obj].first - o[obj].first;
+    int ym = q.front()[obj].second - o[obj].second;
     for (int j = 0; j < 3; j++)
     {
         if (j == obj)
         {
             continue;
         }
-        if (!overlap(st, j, obj))
+        if (!overlap(j, obj))
         {
             continue;
         }
@@ -44,7 +44,7 @@ bool check_valid(vector<pair<int, int>> st, int obj)
         {
             int kx = b[obj][i].first + xm;
             int ky = b[obj][i].second + ym;
-            if (s[j][st[j].first - kx][st[j].second - ky])
+            if (s[j][q.front()[j].first - kx][q.front()[j].second - ky])
             {
                 return false;
             }
@@ -52,13 +52,13 @@ bool check_valid(vector<pair<int, int>> st, int obj)
     }
     return true;
 }
-bool check_ans(vector<pair<int, int>> st)
+bool check_ans()
 {
     for (int i = 0; i < n; i++)
     {
         for (int j = i + 1; j < n; j++)
         {
-            if (overlap(st, i, j))
+            if (overlap(i, j))
             {
                 return false;
             }
@@ -68,7 +68,6 @@ bool check_ans(vector<pair<int, int>> st)
 }
 int main()
 {
-    auto begin = chrono::high_resolution_clock::now();
     for (int i = 0; i < n; i++)
     {
         cin >> p[i];
@@ -116,20 +115,23 @@ int main()
 
     q.push(o);
     l.push(0);
-    long long h = 1;
-    for (int i = 0; i < 3; i++)
-    {
-        h *= 40;
-        h += o[i].first + 10;
-        h *= 40;
-        h += o[i].second + 10;
-    }
+    int h = 1;
+    h += o[0].first - o[1].first + 10;
+    h *= 20;
+    h += o[0].second - o[1].second + 10;
+    h *= 20;
+    h += o[0].first - o[2].first + 10;
+    h *= 20;
+    h += o[0].second - o[2].second + 10;
+    h *= 20;
+    h += o[1].first - o[2].first + 10;
+    h *= 20;
+    h += o[1].second - o[2].second + 10;
     v.insert(h);
     int ans = -1;
     while (!q.empty())
     {
-        vector<pair<int, int>> cur = q.front();
-        if (check_ans(cur))
+        if (check_ans())
         {
             ans = l.front();
             break;
@@ -138,38 +140,39 @@ int main()
         {
             for (int j = 0; j < 4; j++)
             {
-                cur[i].first += dx[j];
-                cur[i].second += dy[j];
-                if (cur[i].first >= -9 && cur[i].first <= 18 && cur[i].second >= -9 && cur[i].second <= 18)
+                q.front()[i].first += dx[j];
+                q.front()[i].second += dy[j];
+                if (q.front()[i].first >= -9 && q.front()[i].first <= 18 && q.front()[i].second >= -9 && q.front()[i].second <= 18)
                 {
-                    long long h = 1;
-                    for (int i = 0; i < 3; i++)
-                    {
-
-                        h *= 40;
-                        h += cur[i].first + 10;
-                        h *= 40;
-                        h += cur[i].second + 10;
-                    }
+                    int h = 1;
+                    h += q.front()[0].first - q.front()[1].first + 10;
+                    h *= 20;
+                    h += q.front()[0].second - q.front()[1].second + 10;
+                    h *= 20;
+                    h += q.front()[0].first - q.front()[2].first + 10;
+                    h *= 20;
+                    h += q.front()[0].second - q.front()[2].second + 10;
+                    h *= 20;
+                    h += q.front()[1].first - q.front()[2].first + 10;
+                    h *= 20;
+                    h += q.front()[1].second - q.front()[2].second + 10;
                     if (v.find(h) == v.end())
                     {
-                        if (check_valid(cur, i))
+                        if (check_valid(i))
                         {
                             v.insert(h);
-                            q.push(cur);
+                            q.push(q.front());
                             l.push(l.front() + 1);
                         }
                     }
                 }
-                cur[i].first -= dx[j];
-                cur[i].second -= dy[j];
+                q.front()[i].first -= dx[j];
+                q.front()[i].second -= dy[j];
             }
         }
         q.pop();
         l.pop();
     }
     cout << ans << endl;
-    auto dur = std::chrono::duration_cast<std::chrono::milliseconds>(chrono::high_resolution_clock::now() - begin).count();
-    cout << "time used=" << dur << " ms" << endl;
     return 0;
 }

@@ -98,5 +98,8 @@
     "telemetry.enableTelemetry": false,
     "telemetry.enableCrashReporter": false,
     "C_Cpp.default.intelliSenseMode": "gcc-x64",
-    "workbench.colorTheme": "One Dark Pro"
+    "workbench.colorTheme": "One Dark Pro",
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.pythonPath": "/usr/bin/python"
 }

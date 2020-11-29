@@ -4,6 +4,8 @@ map<string, map<string, int>> m;
 pair<string, string> p[200005];
 int main()
 {
+    //freopen("citystate.in", "r", stdin);
+    //freopen("citystate.out", "w", stdout);
     int n;
     cin >> n;
     int ans = 0;

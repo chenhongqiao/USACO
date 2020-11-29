@@ -1,4 +1,4 @@
-A repository used to store USACO contest practise source files.
+USACO Problem Solutions
 
 This repository is proprietary and confidential. Any unauthroized copying of any files inside this folder and it's child folders, via any medium is strictly prohibited.
 

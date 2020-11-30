@@ -13,6 +13,8 @@ bool comp(const measurement &a, const measurement &b)
 }
 int main()
 {
+    //freopen("measurement.in", "r", stdin);
+    //freopen("measurement.out", "w", stdout);
     int n, g;
     cin >> n >> g;
     for (int i = 0; i < n; i++)

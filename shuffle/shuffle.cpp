@@ -4,6 +4,8 @@ int r[100005];
 bool v[100005];
 int main()
 {
+    //freopen("shuffle.in", "r", stdin);
+    //freopen("shuffle.out", "w", stdout);
     int n;
     cin >> n;
     for (int i = 1; i <= n; i++)

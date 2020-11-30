@@ -93,7 +93,6 @@
     "editor.fontFamily": "'Cascadia Code', monospace",
     "workbench.iconTheme": "material-icon-theme",
     "editor.formatOnSave": true,
-    "terminal.integrated.fontFamily": "monospace",
     "C_Cpp.default.cppStandard": "c++11",
     "telemetry.enableTelemetry": false,
     "telemetry.enableCrashReporter": false,

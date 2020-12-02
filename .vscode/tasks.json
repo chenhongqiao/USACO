@@ -34,7 +34,7 @@
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}",
+                "${fileDirname}/${fileBasenameNoExtension}-o2",
                 "-O2"
             ],
             "options": {

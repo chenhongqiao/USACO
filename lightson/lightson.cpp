@@ -23,8 +23,7 @@ int main()
         r[x][y].push_back({a, b});
     }
     int ans = 1;
-    int lu = 0;
-    int llu = 0;
+    int lans = 0;
     q.push({1, 1});
     l[1][1] = true;
     v[1][1] = true;
@@ -45,7 +44,6 @@ int main()
                     }
                     if (!v[kx][ky] && l[kx][ky])
                     {
-                        ans++;
                         v[kx][ky] = true;
                         q.push({kx, ky});
                     }
@@ -55,8 +53,11 @@ int main()
             {
                 for (int i = 0; i < r[q.front().f][q.front().s].size(); i++)
                 {
-                    lu++;
-                    l[r[q.front().f][q.front().s][i].f][r[q.front().f][q.front().s][i].s] = true;
+                    if (!l[r[q.front().f][q.front().s][i].f][r[q.front().f][q.front().s][i].s])
+                    {
+                        ans++;
+                        l[r[q.front().f][q.front().s][i].f][r[q.front().f][q.front().s][i].s] = true;
+                    }
                 }
                 lv[q.front().f][q.front().s] = true;
             }
@@ -66,13 +67,13 @@ int main()
             }
             q.pop();
         }
-        if (lu == llu)
+        if (ans == lans)
         {
             break;
         }
         else
         {
-            llu = lu;
+            lans = ans;
             while (!p.empty())
             {
                 q.push({p.front().f, p.front().s});

@@ -4,6 +4,8 @@ bool bk[100005];
 int pfx[100005];
 int main()
 {
+    //freopen("maxcross.in", "r", stdin);
+    //freopen("maxcross.out", "w", stdout);
     int n, k, b;
     cin >> n >> k >> b;
     for (int i = 0; i < b; i++)
@@ -24,11 +26,12 @@ int main()
             pfx[i]++;
         }
     }
+    pfx[n] = pfx[n - 1] + 1;
     int ans = 100000000;
-    for (int i = 0; i < n - k; i++)
+    for (int i = 0; i <= n - k; i++)
     {
         int tmp = k - (pfx[i + k] - pfx[i]);
-        if (tmp > 0)
+        if (tmp >= 0)
         {
             ans = min(tmp, ans);
         }

@@ -2,6 +2,8 @@
 using namespace std;
 int main()
 {
+    //freopen("cowcode.in", "r", stdin);
+    //freopen("cowcode.out", "w", stdout);
     string str;
     long long n;
     cin >> str >> n;

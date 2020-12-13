@@ -13,6 +13,8 @@ bool cmp(const cow &a, const cow &b)
 }
 int main()
 {
+    freopen("helpcross.in", "r", stdin);
+    freopen("helpcross.out", "w", stdout);
     int c, n;
     cin >> c >> n;
     for (int i = 0; i < c; i++)

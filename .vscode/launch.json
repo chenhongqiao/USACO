@@ -11,6 +11,7 @@
             "cwd": "${workspaceFolder}",
             "environment": [],
             "MIMode": "gdb",
+            "externalConsole": true,
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
@@ -31,6 +32,7 @@
             "cwd": "${workspaceFolder}",
             "environment": [],
             "MIMode": "gdb",
+            "externalConsole": true,
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",

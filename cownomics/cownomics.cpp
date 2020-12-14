@@ -4,6 +4,8 @@ char ys[505][55];
 char ns[505][55];
 int main()
 {
+    //freopen("cownomics.in", "r", stdin);
+    //freopen("cownomics.out", "w", stdout);
     int n, m;
     cin >> n >> m;
     for (int i = 0; i < n; i++)

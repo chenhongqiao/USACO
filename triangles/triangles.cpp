@@ -95,17 +95,14 @@ int main()
             int kx = i->f;
             int ky = i->s[j];
             int k = cp[ky][kx];
-            ans += (((*rsum[kx].rbegin()) - rsum[kx][j]) % m) * (((*csum[ky].rbegin()) - csum[ky][k]) % m);
-            ans %= m;
-            ans += (((*rsumr[kx].rbegin()) - rsumr[kx][rsumr[kx].size() - 1 - j]) % m) * (((*csum[ky].rbegin()) - csum[ky][k]) % m);
-            ans %= m;
-            ans += (((*rsum[kx].rbegin()) - rsum[kx][j]) % m) * (((*csumr[ky].rbegin()) - csumr[ky][csumr[ky].size() - 1 - k]) % m);
-            ans %= m;
-            ans += (((*rsumr[kx].rbegin()) - rsumr[kx][rsumr[kx].size() - 1 - j]) % m) * (((*csumr[ky].rbegin()) - csumr[ky][csumr[ky].size() - 1 - k]) % m);
-            ans %= m;
+            long long aa = (*rsum[kx].rbegin() - *(rsum[kx].begin() += j)) * (*csum[ky].rbegin() - *(csum[ky].begin() += k));
+            long long ba = (*rsumr[kx].rbegin() - *(rsumr[kx].rbegin() += j)) * (*csum[ky].rbegin() - *(csum[ky].begin() += k));
+            long long ca = (*rsum[kx].rbegin() - *(rsum[kx].begin() += j)) * (*csumr[ky].rbegin() - *(csumr[ky].rbegin() += k));
+            long long da = (*rsumr[kx].rbegin() - *(rsumr[kx].rbegin() += j)) * (*csumr[ky].rbegin() - *(csumr[ky].rbegin() += k));
+            ans += (aa + ba + ca + da) % m;
         }
     }
-    ans %= m;
+    ans = ans % m;
     cout << ans << endl;
     return 0;
 }

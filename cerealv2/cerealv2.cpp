@@ -32,8 +32,8 @@ void take(int u)
 }
 int main()
 {
-    freopen("cereal.in", "r", stdin);
-    freopen("cereal.out", "w", stdout);
+    //freopen("cereal.in", "r", stdin);
+    //freopen("cereal.out", "w", stdout);
     cin >> n >> m;
     for (int i = 1; i <= m; i++)
     {

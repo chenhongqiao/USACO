@@ -20,8 +20,8 @@ long long check(long long d)
 }
 int main()
 {
-    freopen("socdist.in", "r", stdin);
-    freopen("socdist.out", "w", stdout);
+    //freopen("socdist.in", "r", stdin);
+    //freopen("socdist.out", "w", stdout);
     cin >> n >> m;
     for (int i = 0; i < m; i++)
     {

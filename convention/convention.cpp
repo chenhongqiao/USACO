@@ -38,7 +38,7 @@ int main()
     int h = 0, t = 1000000000;
     while (h < t - 1)
     {
-        int p = h + (t - h + 1) / 2;
+        int p = (h + t + 1) / 2;
         int tmp = check(p);
         if (tmp <= m)
         {

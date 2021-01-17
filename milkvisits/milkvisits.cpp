@@ -1,142 +1,61 @@
 #include <bits/stdc++.h>
 using namespace std;
 int n, m;
-int dep[100005];
-int info[100005][20];
-int gsum[100005];
-int hsum[100005];
-int lg2[100005];
-vector<int> r[100005];
-struct farm
+vector<int> g[100005];
+bool v[100005];
+char cow[100005];
+int color[100005];
+void dfs(int f, const char t, int mark)
 {
-    char ct;
-    int fa = 0;
-    vector<int> s;
-} f[100005];
-void dfs(int cur, int fa)
-{
-    dep[cur] = dep[fa] + 1;
-    info[cur][0] = fa;
-    for (int i = 0; i < f[cur].s.size(); i++)
+    color[f] = mark;
+    for (int i = 0; i < g[f].size(); i++)
     {
-        dfs(f[cur].s.at(i), cur);
-    }
-}
-int lca(int u, int v)
-{
-    if (dep[u] < dep[v])
-    {
-        swap(u, v);
-    }
-    while (dep[u] > dep[v])
-    {
-        u = info[u][lg2[dep[u] - dep[v]]];
-    }
-    if (u == v)
-    {
-        return v;
-    }
-    for (int i = lg2[dep[u]]; i >= 0; i--)
-    {
-        if (info[u][i] != info[v][i])
+        if (!v[g[f][i]] && cow[g[f][i]] == t)
         {
-            u = info[u][i];
-            v = info[v][i];
-        }
-    }
-    return info[u][0];
-}
-void presum(int cur, int fa)
-{
-    hsum[cur] = hsum[fa];
-    gsum[cur] = gsum[fa];
-    if (f[cur].ct == 'G')
-    {
-        gsum[cur]++;
-    }
-    else if (f[cur].ct == 'H')
-    {
-        hsum[cur]++;
-    }
-    for (int i = 0; i < f[cur].s.size(); i++)
-    {
-        presum(f[cur].s.at(i), cur);
-    }
-}
-void broot(int cur, int fa)
-{
-    for (int i = 0; i < r[cur].size(); i++)
-    {
-        if (r[cur][i] != fa)
-        {
-            f[cur].s.push_back(r[cur][i]);
-            f[r[cur][i]].fa = cur;
-            broot(r[cur][i], cur);
+            v[g[f][i]] = true;
+            dfs(g[f][i], t, mark);
         }
     }
 }
 int main()
 {
-    freopen("milkvisits.in", "r", stdin);
-    freopen("milkvisits.out", "w", stdout);
+    //freopen("milkvisits.in", "r", stdin);
+    //freopen("milkvisits.out", "w", stdout);
     cin >> n >> m;
     for (int i = 1; i <= n; i++)
     {
-        cin >> f[i].ct;
+        cin >> cow[i];
     }
     for (int i = 0; i < n - 1; i++)
     {
-        int u, v;
-        cin >> u >> v;
-        r[u].push_back(v);
-        r[v].push_back(u);
+        int a, b;
+        cin >> a >> b;
+        g[a].push_back(b);
+        g[b].push_back(a);
     }
-    lg2[0] = -1;
+    int cnt = 1;
     for (int i = 1; i <= n; i++)
     {
-        lg2[i] = lg2[i / 2] + 1;
-    }
-
-    broot(1, 0);
-    dfs(1, 0);
-    for (int i = 1; i <= n; i++)
-    {
-        for (int j = 1; j <= lg2[dep[i]]; j++)
+        if (!v[i])
         {
-            info[i][j] = info[info[i][j - 1]][j - 1];
+            dfs(i, cow[i], cnt);
+            cnt++;
         }
     }
-    presum(1, 0);
     for (int i = 0; i < m; i++)
     {
-        int u, v;
-        char cw;
-        cin >> u >> v >> cw;
-        int lc = lca(u, v);
-        //cout << lc << " ";
-        if (cw == 'G')
+        int a, b;
+        char t;
+        cin >> a >> b >> t;
+        if (cow[a] != t && cow[b] != t && color[a] == color[b])
         {
-            if (gsum[u] + gsum[v] - gsum[lc] - gsum[f[lc].fa] > 0)
-            {
-                cout << 1;
-            }
-            else
-            {
-                cout << 0;
-            }
+            cout << 0;
         }
-        else if (cw == 'H')
+        else
         {
-            if (hsum[u] + hsum[v] - hsum[lc] - hsum[f[lc].fa] > 0)
-            {
-                cout << 1;
-            }
-            else
-            {
-                cout << 0;
-            }
+            cout << 1;
         }
-        //cout << endl;
     }
+
     return 0;
 }

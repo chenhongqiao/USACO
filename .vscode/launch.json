@@ -29,6 +29,7 @@
             "program": "${fileDirname}/${fileBasenameNoExtension}",
             "args": [],
             "stopAtEntry": false,
+            "externalConsole": true,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "MIMode": "gdb",

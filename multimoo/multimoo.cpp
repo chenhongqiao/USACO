@@ -70,9 +70,15 @@ void build_graph(int x, int y, int color)
     }
 }
 uset<int> cv;
+umap<int, uset<int>> dv;
 int dfs(int f, int alt)
 {
     int cnt = 0;
+    if (dv[f].find(alt) != dv[f].end())
+    {
+        return 0;
+    }
+    dv[f].insert(alt);
     for (auto it = mp[f].adjc[alt].begin(); it != mp[f].adjc[alt].end(); it++)
     {
         if (cv.find(*it) == cv.end())
@@ -85,6 +91,8 @@ int dfs(int f, int alt)
 }
 int main()
 {
+    //freopen("multimoo.in", "r", stdin);
+    //freopen("multimoo.out", "w", stdout);
     cin >> n;
     for (int i = 0; i < n; i++)
     {
@@ -126,9 +134,12 @@ int main()
     {
         for (auto j = i->second.adjc.begin(); j != i->second.adjc.end(); j++)
         {
-            cv.clear();
-            cv.insert(i->first);
-            ans = max(ans, dfs(i->first, j->first));
+            if (dv[i->first].find(j->first) == dv[i->first].end())
+            {
+                cv.clear();
+                cv.insert(i->first);
+                ans = max(ans, dfs(i->first, j->first));
+            }
         }
     }
     cout << ans << endl;

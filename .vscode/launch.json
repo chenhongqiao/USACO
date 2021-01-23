@@ -26,7 +26,7 @@
             "name": "C++: Debug (O2)",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "program": "${fileDirname}/${fileBasenameNoExtension}-o2",
             "args": [],
             "stopAtEntry": false,
             "externalConsole": true,

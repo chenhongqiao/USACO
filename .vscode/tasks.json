@@ -31,11 +31,11 @@
             "args": [
                 "-Wall",
                 "-std=c++11",
+                "-O2",
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}-o2",
-                "-O2"
+                "${fileDirname}/${fileBasenameNoExtension}-o2"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"

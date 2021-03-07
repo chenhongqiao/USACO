@@ -4,7 +4,7 @@
         {
             "label": "gcc",
             "type": "process",
-            "command": "/usr/bin/g++",
+            "command": "/opt/rh/gcc-toolset-10/root/usr/bin/g++",
             "args": [
                 "-Wall",
                 "-std=c++11",
@@ -27,7 +27,7 @@
         {
             "label": "gcc-o2",
             "type": "process",
-            "command": "/usr/bin/g++",
+            "command": "/opt/rh/gcc-toolset-10/root/usr/bin/g++",
             "args": [
                 "-Wall",
                 "-std=c++11",

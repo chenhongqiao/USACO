@@ -20,7 +20,7 @@
                 }
             ],
             "preLaunchTask": "gcc",
-            "miDebuggerPath": "/usr/bin/gdb"
+            "miDebuggerPath": "/opt/rh/gcc-toolset-10/root/usr/bin/gdb"
         },
         {
             "name": "C++: Debug (O2)",
@@ -41,7 +41,7 @@
                 }
             ],
             "preLaunchTask": "gcc-o2",
-            "miDebuggerPath": "/usr/bin/gdb"
+            "miDebuggerPath": "/opt/rh/gcc-toolset-10/root/usr/bin/gdb"
         },
         {
             "name": "Python: Debug",

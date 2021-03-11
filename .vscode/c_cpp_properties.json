@@ -3,10 +3,10 @@
         {
             "name": "Linux",
             "includePath": [
-                "/opt/rh/gcc-toolset-10/root/usr/include/**"
+                "/usr/include/**"
             ],
             "defines": [],
-            "compilerPath": "/opt/rh/gcc-toolset-10/root/usr/bin/cpp",
+            "compilerPath": "/usr/bin/cpp",
             "cStandard": "c11",
             "cppStandard": "c++11",
             "intelliSenseMode": "gcc-x64"

@@ -1,26 +1,25 @@
 #include <bits/stdc++.h>
 using namespace std;
-set<int> b[55];
-vector<int> g[55];
-int dis[50005];
-int p[50005];
-bool ba[55];
-priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> q;
+int dist[55][50005];
+int b[50005];
+int adj[55][55];
+deque<pair<int, int>> q;
 int main()
 {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    freopen64("6.in", "r", stdin);
     int n, k;
     cin >> n >> k;
-    for (int i = 1; i < n; i++)
+    for (int i = 1; i <= k; i++)
     {
-        dis[i] = 1000000005;
+        for (int j = 0; j < n; j++)
+        {
+            dist[i][j] = -1;
+        }
     }
     for (int i = 0; i < n; i++)
     {
-        cin >> p[i];
-        b[p[i]].insert(i);
+        cin >> b[i];
     }
     for (int i = 1; i <= k; i++)
     {
@@ -30,59 +29,37 @@ int main()
             cin >> c;
             if (c == '1')
             {
-                g[i].push_back(j);
+                adj[i][j] = true;
             }
         }
     }
-    q.push({0, 0});
-    int cnt = 0;
+    dist[b[0]][0] = 0;
+    q.push_back({b[0], 0});
     while (!q.empty())
     {
-        int kp = q.top().second;
-        int kd = q.top().first;
-        int kb = p[kp];
-        if (kb == 49)
+        int ob = q.front().first;
+        int kp = q.front().second;
+        q.pop_front();
+        int kb = b[kp];
+        if (kp != 0 && dist[ob][kp - 1] == -1)
         {
-            cnt++;
+            q.push_back({ob, kp - 1});
+            dist[ob][kp - 1] = dist[ob][kp] + 1;
         }
-        ba[kb] = true;
-        for (int i = 0; i < g[kb].size(); i++)
+        if (kp != n - 1 && dist[ob][kp + 1] == -1)
         {
-            auto itb = b[g[kb][i]].lower_bound(kp);
-            if (itb != b[g[kb][i]].begin())
+            q.push_back({ob, kp + 1});
+            if (kp + 1 != n - 1 || ob != b[n - 1])
             {
-                itb--;
-                int np = *itb;
-                int d = kd + abs(kp - np);
-                if (d < dis[np])
-                {
-                    dis[np] = d;
-                    q.push({d, np});
-                }
-            }
-
-            auto ita = b[g[kb][i]].upper_bound(kp);
-            if (ita != b[g[kb][i]].end())
-            {
-                int np = *ita;
-                int d = kd + abs(kp - np);
-                if (d < dis[np])
-                {
-                    dis[np] = d;
-                    q.push({d, np});
-                }
+                dist[ob][kp + 1] = dist[ob][kp] + 1;
             }
         }
-        q.pop();
+        if (adj[ob][kb] && dist[kb][kp] == -1)
+        {
+            q.push_front({kb, kp});
+            dist[kb][kp] = dist[ob][kp];
+        }
     }
-    if (dis[n - 1] == 1000000005)
-    {
-
-        cout << -1 << endl;
-    }
-    else
-    {
-        cout << dis[n - 1] << endl;
-    }
+    cout << dist[b[n - 1]][n - 1] << endl;
     return 0;
 }

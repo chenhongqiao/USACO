@@ -7,7 +7,7 @@
             "command": "g++",
             "args": [
                 "-Wall",
-                "-std=c++11",
+                "-std=c++17",
                 "-g",
                 "${file}",
                 "-o",
@@ -30,7 +30,7 @@
             "command": "g++",
             "args": [
                 "-Wall",
-                "-std=c++11",
+                "-std=c++17",
                 "-O2",
                 "-g",
                 "${file}",
